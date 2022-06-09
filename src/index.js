@@ -25,9 +25,15 @@ import compress from './compress/compress.js';
 import decompress from './compress/decompress.js';
 
 export const manageFile = async () => {
-    let username = process.argv.slice(2);
-    let equalIndex = username[0].indexOf('=');
-    username = username[0].substring(equalIndex + 1);
+  let username;
+  let args = process.argv.slice(2);
+  if(args[0] && args[0].startsWith('--username')){
+    let equalIndex = args[0].indexOf('=');
+    username = args[0].substring(equalIndex + 1);
+  }
+  else {
+    username = 'nameless';
+  }
 
     let sep = path.sep;
     let dirSet = os.userInfo().homedir.split(sep);
