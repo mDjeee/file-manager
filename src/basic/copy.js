@@ -17,15 +17,7 @@ export default async function copy(dirSet, sep, source, destination){
         copyFile(fileSource, path.join(fileDest, source))
       }
       else {
-  
         let files = await readdir(fileSource,{ withFileTypes: true });
-        let filesCopy = await readdir(fileDest,{ withFileTypes: true });
-  
-        for (const file of filesCopy) {
-          fs.unlink(path.join(fileDest, file.name), (error => {
-            if (error) return console.error(error.message);
-          }));
-        }
   
         for (const file of files){
           let newDir = path.join(fileSource,file.name);
