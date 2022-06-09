@@ -28,6 +28,6 @@ export default async function compress(dirSet, sep, fileToCompress, pathToCompre
     );
   }
   catch (err){
-    console.error('Operation failed')
+    console.error('Operation failed');
   }
 }

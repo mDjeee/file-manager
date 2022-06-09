@@ -28,6 +28,6 @@ export default async function decompress(dirSet, sep, fileToCompress, pathToComp
     );
   }
   catch (err){
-    console.error('Operation failed')
+    console.error('Operation failed');
   }
 }

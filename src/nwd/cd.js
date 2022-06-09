@@ -20,7 +20,7 @@ export default async function up(dirSet, sep, toPath){
       }
     }
     else {
-      console.error('Operation failed: no such directory')
+      console.error('Operation failed: no such directory');
     }
   }
   catch {

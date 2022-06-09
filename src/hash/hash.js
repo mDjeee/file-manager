@@ -32,7 +32,6 @@ export default async function hash(dirSet, sep, fileName){
         }
       });
 
-      // console.log(hash.update(pathToFile).digest("hex"));
     }
     else {
       console.error('Invalid input: no such file');
