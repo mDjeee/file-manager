@@ -1,5 +1,9 @@
 # file-manager
 
+## Note
+
+ - Take not that on the root disk (f.e. '`C./`'), you do not need to type the cd command with a path separator ('`/`') as in the [Video](https://youtu.be/TmylgGP9QDk?t=6770), you can type without a separator ('`/`') the name of the folder -> `cd Users` instead of `cd ./Users`
+
 ## Basic Scope
 - General
     - [x] **+6** Application accepts username and prints proper message
