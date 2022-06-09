@@ -6,7 +6,14 @@ export default async function eol(dirSet, sep, command){
       console.log(`You are currently in ${dirSet.join(sep)}`);
     }
     else if(command === '--cpus'){
-      console.log(os.cpus());
+      let arr = [];
+      os.cpus().forEach(item => {
+        let obj = {};
+        obj.model = item.model;
+        obj.speed = item.speed;
+        arr.push(obj)
+      })
+      console.log(arr);
       console.log(`You are currently in ${dirSet.join(sep)}`);
     }
     else if(command === '--homedir'){

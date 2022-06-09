@@ -1,6 +1,7 @@
 import zlib from 'zlib';
 import path from 'path';
 import fs from 'fs';
+import { pipeline } from 'stream';
 
 export default async function decompress(dirSet, sep, fileToCompress, pathToCompress){
   try {
@@ -12,13 +13,19 @@ export default async function decompress(dirSet, sep, fileToCompress, pathToComp
 
     const brotli = zlib.createBrotliDecompress();
 
-    // Pipe the read and write operations with brotli compression
-    const stream = readStream.pipe(brotli).pipe(writeStream);
-
-    stream.on('finish', () => {
-      console.log(`You are currently in ${dirSet.join(sep)}`);
-    });
-
+    pipeline(
+      readStream,
+      brotli,
+      writeStream,
+      (err) => {
+        if(err){
+          console.error('Operation failed');
+        }
+        else {
+          console.log(`You are currently in ${dirSet.join(sep)}`);
+        }
+      } 
+    );
   }
   catch (err){
     console.error('Operation failed')
