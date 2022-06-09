@@ -1,8 +1,8 @@
 # file-manager
 
 ## Note
-
- - Take not that on the root disk (f.e. '`C./`'), you do not need to type the cd command with a path separator ('`/`') as in the [Video](https://youtu.be/TmylgGP9QDk?t=6770), you can type without a separator ('`/`') the name of the folder -> `cd Users` instead of `cd ./Users`
+ - to run application use `node ./src/index.js --username=your_username` otherwise your username will be `nameless`
+ - Take note that on the root disk (f.e. '`C./`'), you do not need to type the `cd` command with a path separator ('`/`') as in the [Video](https://youtu.be/TmylgGP9QDk?t=6770), you can type the name of the folder without a separator ('`/`') -> `cd Users` instead of `cd ./Users`
 
 ## Basic Scope
 - General
