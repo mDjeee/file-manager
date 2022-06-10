@@ -1,4 +1,3 @@
-import { appendFile } from 'fs/promises';
 import fs from 'fs';
 export default async function add(dirSet, sep, fileName){
   try {

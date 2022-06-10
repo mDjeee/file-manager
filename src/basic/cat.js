@@ -1,5 +1,5 @@
 import fs from 'fs';
-import { readdir, lstat } from 'fs/promises';
+import { readdir } from 'fs/promises';
 export default async function cat(dirSet, sep, fileName){
   try {
     let files;

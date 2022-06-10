@@ -1,4 +1,4 @@
-import { copyFile, readdir, mkdir } from 'fs/promises';
+import { readdir, mkdir } from 'fs/promises';
 import fs from 'fs';
 import path from 'path';
 export default async function copy(dirSet, sep, source, destination){
@@ -6,23 +6,29 @@ export default async function copy(dirSet, sep, source, destination){
     let fileSource = path.join(dirSet.join(sep), source);
     let fileDest = path.join(dirSet.join(sep), destination);
     if(fs.statSync(fileDest).isFile()){
-      copyFile(fileSource, fileDest);
+      let readableStream = fs.createReadStream(fileSource);
+      let writableStream = fs.createWriteStream(fileDest);
+      readableStream.pipe(writableStream);
     }
     else {
-      mkdir(fileDest, { recursive: true }, (err) => {
-        if (err) console.error('Operation failed');
-      });
-
       if(fs.statSync(fileSource).isFile()){
-        copyFile(fileSource, path.join(fileDest, source))
+        let readableStream = fs.createReadStream(fileSource);
+        let writableStream = fs.createWriteStream(path.join(fileDest, source));
+        readableStream.pipe(writableStream);
       }
       else {
         let files = await readdir(fileSource,{ withFileTypes: true });
+
+        mkdir(path.join(fileDest, source), { recursive: true }, (err) => {
+          if (err) console.error('Operation failed');
+        });
   
         for (const file of files){
           let newDir = path.join(fileSource,file.name);
-          let toNewDir = path.join(fileDest, file.name);
-          copyFile(newDir, toNewDir);
+          let toNewDir = path.join(fileDest, source, file.name);
+          let readableStream = fs.createReadStream(newDir);
+          let writableStream = fs.createWriteStream(toNewDir);
+          readableStream.pipe(writableStream);
         }
       }
     }
