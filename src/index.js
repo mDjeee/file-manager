@@ -74,10 +74,12 @@ export const manageFile = async () => {
         let oldFileName = data.toString().split(' ')[1];
         let newFileName = data.toString().split(' ')[2].slice(0,-os.EOL.length);
         mv(dirSet, sep, oldFileName, newFileName);
+        console.log(`You are currently in ${dirSet.join(sep)}`);
       }
       else if(data.toString().startsWith('rm ')) {
         let oldFileName = data.toString().split(' ')[1].slice(0, -os.EOL.length);
         rm(dirSet, sep, oldFileName);
+        console.log(`You are currently in ${dirSet.join(sep)}`);
       }
       else if(data.toString().startsWith('os --')) {
         let command = data.toString().split(' ')[1].slice(0, -os.EOL.length);

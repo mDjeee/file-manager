@@ -12,8 +12,6 @@ export default async function rm(dirSet, sep, pathToFile){
         if (error) return;
       }));
     }
-
-    console.log(`You are currently in ${dirSet.join(sep)}`);
   } catch (err) {
     // When a request is aborted - err is an AbortError
     console.error('Operation failed');
